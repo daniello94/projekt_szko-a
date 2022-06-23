@@ -12,13 +12,14 @@ export default function List(props) {
                 <td className="box">{student.classNr}</td>
                 <td className="box">{student.email}</td>
                 <td className="box">
-                    <button className="btn">Wiecej informacji</button>
+                    <Link className="btn" to={`/studentData/${student._id}`}>Wiecej Informacji</Link>
                     {/* <button className="btn">Usuń ucznia</button> */}
                 </td>
             </tr>
 
         )
     })
+    
     return (
         <div className="table">
             <table>

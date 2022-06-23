@@ -32,3 +32,13 @@ form input,select{
 .btn-1:hover{
     background-color: red;
 }
+.error{
+    color: red;
+}
+.error span{
+    color: green;
+}
+.error-1{
+    border: 1px solid red;
+    background-color: rgba(224, 163, 163, 0.888)
+}
