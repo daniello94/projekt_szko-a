@@ -25,13 +25,12 @@ function userLogin(data, cb) {
             cb(null, user)
             return
         };
-
         bcrypt.compare(data.password, user.password, function (err, logged) {
             if (err) {
                 cb(err)
             } if (logged) {
                 const token = user.generateAuthToken();
-                cb(null, token);
+                cb(null, user, token);
             } else {
                 cb(null, null)
             }
@@ -59,9 +58,20 @@ function userGet(id, cb) {
     })
 };
 
+function userUpodate(id, data, cb) {
+    User.updateOne({ _id: id }, data, function (err, user) {
+        if (err) {
+            cb(err)
+        } else {
+            cb(null, user)
+        }
+    })
+}
+
 module.exports = {
     add: userAdd,
     login: userLogin,
     list: userList,
-    get:userGet
+    get: userGet,
+    upodate:userUpodate
 };

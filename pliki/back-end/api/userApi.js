@@ -19,21 +19,21 @@ router.post('/signup', function (req, res) {
 });
 
 router.post('/login', function (req, res) {
-    user.login(req.body, function (err, token) {
+    user.login(req.body, function (err, loggedUser, token = '') {
         if (err) {
             res.status(404);
             res.json({
                 error: 'User not logged'
             })
         } else if (token) {
-            res.json({ success: true, jwt: token })
+            res.json({ success: true, user: loggedUser, jwt: token })
         } else {
             res.json({ success: false, massage: 'username or password do not match' })
         }
     })
 });
 
-router.post('/all', function (req, res) {
+router.post('/all', authTeacher, function (req, res) {
     user.list(function (err, users) {
         if (err) {
             res.status(404);
@@ -46,15 +46,28 @@ router.post('/all', function (req, res) {
     })
 });
 
-router.get('/:id',function(req,res){
-    user.get(req.params.id,function(err,user){
-        if(err){
+router.get('/:id', function (req, res) {
+    user.get(req.params.id, function (err, user) {
+        if (err) {
             res.status(404);
             res.json({
-                error:'User not found'
+                error: 'User not found'
             })
-        }else{
+        } else {
             res.json(user)
+        }
+    })
+});
+
+router.put('/upodate/:id', function (req, res) {
+    user.upodate(req.params.id, req.body, function (err, data) {
+        if (err) {
+            res.status(404);
+            res.json({
+                error: 'user is not found'
+            })
+        } else {
+            res.json(data)
         }
     })
 });
