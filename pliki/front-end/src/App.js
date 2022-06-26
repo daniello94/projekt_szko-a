@@ -14,8 +14,9 @@ import UserData from "./routes/UserData";
 import MyGrades from "./routes/MyGrades";
 import StudentAdd from "./routes/StudentAdd";
 import StudentData from "./routes/StudentData";
-
+import AddGrades from "./routes/AddGrades";
 import axios from "axios";
+
 export default function App() {
   const [userData, setUser] = useState(
     JSON.parse(localStorage.getItem("user"))
@@ -71,7 +72,7 @@ export default function App() {
           )}
           {userData  && userData.user.role === "student"  &&  (
             <li>
-              <Link className="ul-itm" to="/myGrades">
+              <Link className="ul-itm" to={`/myGrades/${userData.user._id}`}>
                 Moje Oceny
               </Link>
             </li>
@@ -88,7 +89,7 @@ export default function App() {
 
       <Routes>
         <Route
-          path="login"
+          path="/login"
           index
           element={<Login userData={userData} setUser={setUser} />}
         />
@@ -102,9 +103,10 @@ export default function App() {
           }
         />
         <Route path="userData/:id" element={<UserData />} />
-        <Route path="/myGrades" element={<MyGrades />} />
+        <Route path="/myGrades/:id" element={<MyGrades />} />
         <Route path="/studentAdd" element={<StudentAdd />} />
         <Route path="/studentData/:id" element={<StudentData />} />
+        <Route path="/addGrades/:id" element={<AddGrades />} />
       </Routes>
     </div>
   );

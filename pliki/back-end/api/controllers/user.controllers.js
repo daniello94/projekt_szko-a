@@ -39,7 +39,7 @@ function userLogin(data, cb) {
 };
 
 function userList(cb) {
-    User.find().lean().exec(function (err, users) {
+    User.find({"role":"student"}).lean().exec(function (err, users) {
         if (err) {
             cb(err)
         } else {
@@ -66,6 +66,30 @@ function userUpodate(id, data, cb) {
             cb(null, user)
         }
     })
+};
+
+function userDelate(id, cb){
+    User.deleteOne({_id:id},function(err,user){
+        if(err){
+            cb(err)
+        }else{
+            cb(null, user)
+        }
+    })
+};
+
+function gradesAdd(data ,cb){
+    User.updateOne(
+        {_id:data[0]},
+        {$push: {actions: data[1]}},
+        function(err, grades){
+            if(err){
+                cb(err)
+            }else{
+                cb(null,grades)
+            }
+        }
+    )
 }
 
 module.exports = {
@@ -73,5 +97,7 @@ module.exports = {
     login: userLogin,
     list: userList,
     get: userGet,
-    upodate:userUpodate
+    upodate:userUpodate,
+    delete:userDelate,
+    action:gradesAdd
 };

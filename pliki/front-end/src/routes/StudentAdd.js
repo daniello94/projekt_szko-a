@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import "./style/StudentAdd.css"
-import { useForm } from "react-hook-form";
 
 const validateNmae = form => {
     if (!form.name) {
@@ -33,7 +32,7 @@ const validatePesel = form => {
     } else if (form.pesel.length >= 12) {
         return "Podałes za dużo cyf pesel składa się z 11 liczb"
     } else if (/\D/.test(form.pesel)) {
-        return "Podałeś błędny znak pesel składa sie z samych cyfr"
+        return "Podałeś błędny znak numer PESEL składa sie z samych cyfr"
     }
 };
 
@@ -70,9 +69,9 @@ const validateRole = form => {
         return "Podaj typ konta"
     }
 };
-const validate = form =>{
-    if(!form.name)
-    return " "
+const validate = form => {
+    if (!form.name)
+        return " "
 }
 
 
@@ -174,7 +173,7 @@ export default function StudentAdd() {
         <div className="form">
             <h2>Dodaj Ucznia </h2>
             <p className="error">{error}</p>
-            <form onSubmit={handleSubmit(addStudent)}>
+            <form >
 
                 <input onChange={stateStudent} value={name} type="text" name="name" placeholder="Podaj imie ucznia" />
                 <span className="error">
@@ -186,32 +185,32 @@ export default function StudentAdd() {
                 <input onChange={stateStudent} value={classNr} type="text" name="classNr" placeholder="Podaj klase ucznia" />
                 <span className="error">{errorClassNr}</span>
 
-                <input  onChange={stateStudent} value={pesel} type="text" name="pesel" placeholder="Podaj PESEL ucznia" />
+                <input onChange={stateStudent} value={pesel} type="text" name="pesel" placeholder="Podaj PESEL ucznia" />
                 <span className="error">{errorPesel}</span>
 
                 <input onChange={stateStudent} value={nameMather} type="text" name="nameMather" placeholder="Podaj imie matki ucznia"></input>
                 <input onChange={stateStudent} value={nameFather} type="text" name="nameFather" placeholder="Podaj imie ojca ucznia"></input>
 
                 <label>Adress
-                    <input  onChange={stateStudent} value={city} type="text" name="city" placeholder="Miasto" />
-                    <span className="error">{errors.city?.type === 'required' && "Podaj miasto"}</span>
+                    <input onChange={stateStudent} value={city} type="text" name="city" placeholder="Miasto" />
+                    <span ></span>
 
-                    <input  onChange={stateStudent} value={streaat} type="text" name="streaat" placeholder="ulica" />
-                    <span className="error">{}</span>
+                    <input onChange={stateStudent} value={streaat} type="text" name="streaat" placeholder="ulica" />
+                    <span className="error">{ }</span>
 
-                    <input {...register("nr", { required: true, minLength: 1 })} onChange={stateStudent} value={nr} type="text" name="nr" placeholder="numer domu" />
-                    <span className="error">{errors.nr?.type === 'required' && "Podaj numer"}</span>
+                    <input onChange={stateStudent} value={nr} type="text" name="nr" placeholder="numer domu" />
+                    <span className="error"></span>
 
                     <input onChange={stateStudent} value={zipcode} type="text" name="zipcode" placeholder="Kod pocztowy"></input>
                 </label>
                 <label>Dane konta ucznia
-                    <input onChange={stateStudent} value={email} type="text" name="email" placeholder="Podaj email ucznia"/>
+                    <input onChange={stateStudent} value={email} type="text" name="email" placeholder="Podaj email ucznia" />
                     <span className="error">{errorEmail}</span>
 
-                    <input onChange={stateStudent} value={password} type="password" name="password" placeholder="Podaj hasło"/>
+                    <input onChange={stateStudent} value={password} type="password" name="password" placeholder="Podaj hasło" />
                     <span className="error">{errorPassword}</span>
 
-                    <input onChange={stateStudent} type="password" value={passwordRep} name="passwordRep" placeholder="Powtórz hasło"/>
+                    <input onChange={stateStudent} type="password" value={passwordRep} name="passwordRep" placeholder="Powtórz hasło" />
                     <span className="error">{errorPasswordRep}</span>
 
                 </label>

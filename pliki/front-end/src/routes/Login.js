@@ -1,23 +1,32 @@
 import React, { useState, useEffect, useNavigate } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
-
-const validate = (form) => {
+const validateLogin = (form) => {
   if (!form.email) {
     return "wpisz login";
   }
+
+};
+
+const validatePassword = (form) => {
+  if (!form.password) {
+    return "wpisz hasło";
+  }
+
+};
+
+const validate = (form) => {
+
   if (form.email !== form.data) {
     return "Hasło bądź nazwa urzytkownika są nieprawidłowe";
   }
 
-  if (!form.password) {
-    return "wpisz hasło";
-  }
-};
-
+}
 export default function Login(props) {
 
   const [error, setError] = useState("");
+  const [errorLogin, setErrorLogin] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -33,7 +42,11 @@ export default function Login(props) {
       .then((req) => {
         if (!req.data.success) {
           const errorss = validate(form);
+          const errorLogin = validateLogin(form);
+          const errorPassword = validatePassword(form);
           if (errorss) {
+            setErrorLogin(errorLogin);
+            setErrorPassword(errorPassword);
             setError(errorss);
             e.preventDefault();
             return;
@@ -57,7 +70,9 @@ export default function Login(props) {
     <div>
       {props.userData && <Navigate to={`/userData/${props.userData.user._id}`} />}
       <p className="error">{error}</p>
+
       <form onSubmit={userSubmit}>
+        
         <input
           type="text"
           value={email}
@@ -65,6 +80,8 @@ export default function Login(props) {
           name="email"
           placeholder="Podaj Login"
         ></input>
+        <span className="error">{errorLogin}</span>
+
         <input
           type="password"
           value={password}
@@ -72,6 +89,8 @@ export default function Login(props) {
           onChange={stateLogin}
           placeholder="Podaj Hasło"
         ></input>
+         <span className="error">{errorPassword}</span>
+
         <button className="btn-1" type="submit">
           Zaloguj
         </button>

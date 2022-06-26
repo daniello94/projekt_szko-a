@@ -5,7 +5,7 @@ const router = express.Router();
 const user = require('../api/controllers/user.controllers');
 const authTeacher = require("../api/midleweres/authTeacher");
 
-router.post('/signup', function (req, res) {
+router.post('/signup', authTeacher, function (req, res) {
     user.add(req.body, function (err, user) {
         if (err) {
             res.status(404);
@@ -69,6 +69,27 @@ router.put('/upodate/:id', function (req, res) {
         } else {
             res.json(data)
         }
+    })
+});
+
+
+router.delete('/delete/:id', authTeacher, function (req, res) {
+    user.delete(req.params.id, function (err, data) {
+        if (err) {
+            res.status(404);
+            res.json({
+                error: "User not found"
+            })
+        } else {
+            res.json(data)
+        }
+    })
+});
+
+router.put('/addGreade/:id',authTeacher, function (req,res){
+    user.action([req.params.id, req.body], function (err,grades){
+        if(err) res.send(err)
+        res.json(grades)
     })
 });
 

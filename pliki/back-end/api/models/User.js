@@ -5,6 +5,15 @@ const jwt = require('jsonwebtoken');
 
 mongoose.connect('mongodb://' + process.env.DB_HOST + '/' + process.env.DB_NAME, { useNewUrlParser: true, useUnifiedTopology: true });
 
+const Grades = {
+    nameSubject:String,
+    rating:String,
+    titlleTask:String,
+    textarea:String,
+    genus:String
+
+}
+
 const schema = mongoose.Schema({
     email: {
         type: String,
@@ -63,7 +72,8 @@ const schema = mongoose.Schema({
             type: String,
             default: ''
         }
-    }
+    },
+    actions: [Grades]
 });
 
 schema.plugin(uniqueValidator);

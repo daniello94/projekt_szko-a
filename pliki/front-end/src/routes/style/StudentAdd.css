@@ -28,6 +28,7 @@ form input,select{
     font-family: cursive;
     font-size: 15px;
     transition: .7s;
+    margin-top: 10px;
 }
 .btn-1:hover{
     background-color: red;

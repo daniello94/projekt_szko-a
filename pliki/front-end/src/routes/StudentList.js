@@ -24,7 +24,7 @@ class StudentList extends Component {
     render() {
         return (
             <div>
-               <List dataStudents={this.state.dataStudent}/>
+               <List dataStudents={this.state.dataStudent} dataStudent={this.listStudents}/>
             </div>
         )
     }
