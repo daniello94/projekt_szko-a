@@ -38,14 +38,23 @@ function userLogin(data, cb) {
     })
 };
 
-function userList(cb) {
-    User.find({"role":"student"}).lean().exec(function (err, users) {
+function userList(group,cb) {
+    let payload = {}
+
+    if (group) {
+        payload = { "role": "student", "classNr": group }
+    } else {
+        payload = { "role": "student" }
+    }
+
+    User.find(payload).lean().exec(function (err, users) {
         if (err) {
             cb(err)
         } else {
             cb(null, users)
         }
     })
+
 };
 
 function userGet(id, cb) {
@@ -58,7 +67,7 @@ function userGet(id, cb) {
     })
 };
 
-function userUpodate(id, data, cb) {
+function userUpdate(id, data, cb) {
     User.updateOne({ _id: id }, data, function (err, user) {
         if (err) {
             cb(err)
@@ -68,25 +77,25 @@ function userUpodate(id, data, cb) {
     })
 };
 
-function userDelate(id, cb){
-    User.deleteOne({_id:id},function(err,user){
-        if(err){
+function userDelate(id, cb) {
+    User.deleteOne({ _id: id }, function (err, user) {
+        if (err) {
             cb(err)
-        }else{
+        } else {
             cb(null, user)
         }
     })
 };
 
-function gradesAdd(data ,cb){
+function gradesAdd(data, cb) {
     User.updateOne(
-        {_id:data[0]},
-        {$push: {actions: data[1]}},
-        function(err, grades){
-            if(err){
+        { _id: data[0] },
+        { $push: { grades: data[1] } },
+        function (err, grades) {
+            if (err) {
                 cb(err)
-            }else{
-                cb(null,grades)
+            } else {
+                cb(null, grades)
             }
         }
     )
@@ -97,7 +106,7 @@ module.exports = {
     login: userLogin,
     list: userList,
     get: userGet,
-    upodate:userUpodate,
-    delete:userDelate,
-    action:gradesAdd
+    update: userUpdate,
+    delete: userDelate,
+    grades: gradesAdd
 };

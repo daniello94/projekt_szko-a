@@ -33,17 +33,20 @@ router.post('/login', function (req, res) {
     })
 });
 
-router.post('/all', authTeacher, function (req, res) {
-    user.list(function (err, users) {
+router.post('/all/', function (req, res) {
+    let group = req.query.group
+
+    user.list(group,function (err, users) {
         if (err) {
             res.status(404);
             res.json({
-                error: "useer not found"
+                error: "user not found"
             })
         } else {
             res.json(users)
         }
     })
+
 });
 
 router.get('/:id', function (req, res) {
@@ -59,8 +62,8 @@ router.get('/:id', function (req, res) {
     })
 });
 
-router.put('/upodate/:id', function (req, res) {
-    user.upodate(req.params.id, req.body, function (err, data) {
+router.put('/update/:id', function (req, res) {
+    user.update(req.params.id, req.body, function (err, data) {
         if (err) {
             res.status(404);
             res.json({
@@ -86,9 +89,9 @@ router.delete('/delete/:id', authTeacher, function (req, res) {
     })
 });
 
-router.put('/addGreade/:id',authTeacher, function (req,res){
-    user.action([req.params.id, req.body], function (err,grades){
-        if(err) res.send(err)
+router.put('/addGrade/:id', function (req, res) {
+    user.grades([req.params.id, req.body], function (err, grades) {
+        if (err) res.send(err)
         res.json(grades)
     })
 });

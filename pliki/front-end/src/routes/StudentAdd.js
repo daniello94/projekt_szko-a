@@ -1,8 +1,8 @@
-import React from "react";
+import React,{useState} from "react";
 import axios from "axios";
 import "./style/StudentAdd.css"
 
-const validateNmae = form => {
+const validateName = form => {
     if (!form.name) {
         return "Podaj imię"
     } else if (form.name.length < 3) {
@@ -24,15 +24,15 @@ const validateClassNr = form => {
     };
 }
 
-const validatePesel = form => {
-    if (!form.pesel) {
-        return "wpisz pesel"
-    } else if (form.pesel.length <= 10) {
-        return "Podałeś za mało cyfr pesel składa się z 11 liczb"
-    } else if (form.pesel.length >= 12) {
-        return "Podałes za dużo cyf pesel składa się z 11 liczb"
-    } else if (/\D/.test(form.pesel)) {
-        return "Podałeś błędny znak numer PESEL składa sie z samych cyfr"
+const validateNumberId = form => {
+    if (!form.numberId) {
+        return "wpisz numberId"
+    } else if (form.numberId.length <= 10) {
+        return "Podałeś za mało cyfr numberId składa się z 11 liczb"
+    } else if (form.numberId.length >= 12) {
+        return "Podałes za dużo cyf numberId składa się z 11 liczb"
+    } else if (/\D/.test(form.numberId)) {
+        return "Podałeś błędny znak numer numberId składa sie z samych cyfr"
     }
 };
 
@@ -76,43 +76,43 @@ const validate = form => {
 
 
 export default function StudentAdd() {
-    const [error, setError] = React.useState("");
-    const [errorEmail, setErrorEmail] = React.useState("");
-    const [errorPassword, setErrorPassword] = React.useState("");
-    const [errorPasswordRep, setErrorPasswordRep] = React.useState("");
-    const [errorPesel, setErrorPesel] = React.useState("");
-    const [errorName, setErrorName] = React.useState("");
-    const [errorLastName, setErrorLastName] = React.useState("");
-    const [errorClassNr, setErrorClassNr] = React.useState("");
-    const [errorRole, setErrorRole] = React.useState("");
-    const [form, setForm] = React.useState({
+    const [error, setError] = useState("");
+    const [errorEmail, setErrorEmail] = useState("");
+    const [errorPassword, setErrorPassword] = useState("");
+    const [errorPasswordRep, setErrorPasswordRep] = useState("");
+    const [errorNumberId, setErrorNumberId] = useState("");
+    const [errorName, setErrorName] = useState("");
+    const [errorLastName, setErrorLastName] = useState("");
+    const [errorClassNr, setErrorClassNr] = useState("");
+    const [errorRole, setErrorRole] = useState("");
+    const [form, setForm] = useState({
         name: "",
         lastName: "",
         classNr: "",
-        pesel: "",
+        numberId: "",
         nameMather: "",
         nameFather: "",
         email: "",
         password: "",
         passwordRep: "",
         role: "",
-        adress: {
+        address: {
             city: "",
-            streaat: "",
+            street: "",
             nr: "",
-            zipcode: ""
+            zipCode: ""
         }
     });
 
     const addStudent = (e) => {
         e.preventDefault();
         const errorss = validate(form)
-        const errorName = validateNmae(form)
+        const errorName = validateName(form)
         const errorLastName = validateLastName(form)
         const errorEmail = validateEmail(form)
         const errorPassword = validatePassword(form)
         const errorPasswordRep = validatePasswordRep(form)
-        const errorPesel = validatePesel(form)
+        const errorNumberId = validateNumberId(form)
         const errorClassNr = validateClassNr(form)
         const errorRole = validateRole(form)
         if (errorss) {
@@ -122,20 +122,20 @@ export default function StudentAdd() {
             setErrorEmail(errorEmail)
             setErrorPassword(errorPassword)
             setErrorPasswordRep(errorPasswordRep)
-            setErrorPesel(errorPesel)
+            setErrorNumberId(errorNumberId)
             setErrorClassNr(errorClassNr)
             setErrorRole(errorRole)
             return
         } else {
-            const { name, lastName, pesel, classNr, nameMather, nameFather, role, email, password, passwordRep,
-                city, streaat, nr, zipcode } = form
+            const { name, lastName, numberId, classNr, nameMather, nameFather, role, email, password, passwordRep,
+                city, street, nr, zipCode } = form
             axios.post('http://127.0.0.1:8080/api/user/signup', {
-                name, lastName, pesel, classNr, nameMather, nameFather, role, email, password, passwordRep,
-                adress: {
+                name, lastName, numberId, classNr, nameMather, nameFather, role, email, password, passwordRep,
+                address: {
                     city,
-                    streaat,
+                    street,
                     nr,
-                    zipcode
+                    zipCode
                 }
 
             })
@@ -145,7 +145,7 @@ export default function StudentAdd() {
             setForm({
                 name: "",
                 lastName: "",
-                pesel: "",
+                numberId: "",
                 classNr: "",
                 nameMather: "",
                 nameFather: "",
@@ -154,9 +154,9 @@ export default function StudentAdd() {
                 password: "",
                 passwordRep: "",
                 city: "",
-                streaat: "",
+                street: "",
                 nr: "",
-                zipcode: ""
+                zipCode: ""
             })
         }
     }
@@ -167,7 +167,7 @@ export default function StudentAdd() {
         })
 
     }
-    const { name, lastName, pesel, nameMather, nameFather, email, classNr, role, password, passwordRep, city, streaat, nr, zipcode } = form
+    const { name, lastName, numberId, nameMather, nameFather, email, classNr, role, password, passwordRep, city, street, nr, zipCode } = form
 
     return (
         <div className="form">
@@ -185,23 +185,20 @@ export default function StudentAdd() {
                 <input onChange={stateStudent} value={classNr} type="text" name="classNr" placeholder="Podaj klase ucznia" />
                 <span className="error">{errorClassNr}</span>
 
-                <input onChange={stateStudent} value={pesel} type="text" name="pesel" placeholder="Podaj PESEL ucznia" />
-                <span className="error">{errorPesel}</span>
+                <input onChange={stateStudent} value={numberId} type="text" name="numberId" placeholder="Podaj Pesel ucznia" />
+                <span className="error">{errorNumberId}</span>
 
                 <input onChange={stateStudent} value={nameMather} type="text" name="nameMather" placeholder="Podaj imie matki ucznia"></input>
                 <input onChange={stateStudent} value={nameFather} type="text" name="nameFather" placeholder="Podaj imie ojca ucznia"></input>
 
-                <label>Adress
+                <label>Adres
                     <input onChange={stateStudent} value={city} type="text" name="city" placeholder="Miasto" />
-                    <span ></span>
 
-                    <input onChange={stateStudent} value={streaat} type="text" name="streaat" placeholder="ulica" />
-                    <span className="error">{ }</span>
+                    <input onChange={stateStudent} value={street} type="text" name="street" placeholder="ulica" />
 
                     <input onChange={stateStudent} value={nr} type="text" name="nr" placeholder="numer domu" />
-                    <span className="error"></span>
-
-                    <input onChange={stateStudent} value={zipcode} type="text" name="zipcode" placeholder="Kod pocztowy"></input>
+                    
+                    <input onChange={stateStudent} value={zipCode} type="text" name="zipCode" placeholder="Kod pocztowy"></input>
                 </label>
                 <label>Dane konta ucznia
                     <input onChange={stateStudent} value={email} type="text" name="email" placeholder="Podaj email ucznia" />

@@ -11,7 +11,7 @@ const validate = form => {
         return "Wybierz Typ "
     };
 
-    if (!form.titlleTask) {
+    if (!form.titleTask) {
         return "Podaj Tytuł Działu "
     };
 
@@ -30,7 +30,7 @@ export default function AddGrades() {
     const [status, setStatus] = useState({
         nameSubject: "",
         rating: "",
-        titlleTask: "",
+        titleTask: "",
         textarea: "",
         genus: ""
     });
@@ -41,15 +41,15 @@ export default function AddGrades() {
             setError(errors)
 
         } else {
-            axios.put('http://127.0.0.1:8080/api/user/addGreade/' + id, {
-                nameSubject, rating, titlleTask, textarea, genus
+            axios.put('http://127.0.0.1:8080/api/user/addGrade/' + id, {
+                nameSubject, rating, titleTask, textarea, genus
             }).then(() => {
                 setError(<span>Wystawiłeś ocene</span>)
             })
             setStatus({
                 nameSubject: "",
                 rating: "",
-                titlleTask: "",
+                titleTask: "",
                 textarea: "",
                 genus: ""
             })
@@ -65,7 +65,7 @@ export default function AddGrades() {
         })
 
     }
-    const { nameSubject, rating, titlleTask, textarea, genus } = status
+    const { nameSubject, rating, titleTask, textarea, genus } = status
     return (
         <div className="form">
             <span className="error">{error}</span>
@@ -93,7 +93,7 @@ export default function AddGrades() {
                 </label>
 
                 <label className="label-grades">Tytuł działu
-                    <input value={titlleTask} name="titlleTask" type="text" onChange={stateStudent}></input>
+                    <input value={titleTask} name="titleTask" type="text" onChange={stateStudent}></input>
                 </label>
 
                 <label className="label-grades" >Ocena:

@@ -6,11 +6,11 @@ const jwt = require('jsonwebtoken');
 mongoose.connect('mongodb://' + process.env.DB_HOST + '/' + process.env.DB_NAME, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Grades = {
-    nameSubject:String,
-    rating:String,
-    titlleTask:String,
-    textarea:String,
-    genus:String
+    nameSubject: String,
+    rating: String,
+    titleTask: String,
+    textarea: String,
+    genus: String
 
 }
 
@@ -42,7 +42,7 @@ const schema = mongoose.Schema({
         type: String,
         default: ''
     },
-    pesel: {
+    numberId: {
         type: String,
         default: ''
     },
@@ -55,12 +55,12 @@ const schema = mongoose.Schema({
         type: String,
         default: ''
     },
-    adress: {
+    address: {
         city: {
             type: String,
             default: ''
         },
-        streaat: {
+        street: {
             type: String,
             default: ""
         },
@@ -68,12 +68,12 @@ const schema = mongoose.Schema({
             type: String,
             default: ''
         },
-        zipcode: {
+        zipCode: {
             type: String,
             default: ''
         }
     },
-    actions: [Grades]
+    grades: [Grades]
 });
 
 schema.plugin(uniqueValidator);

@@ -59,7 +59,7 @@ export default function List(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className="titlle-box">
+                    <tr className="title-box">
                         <td>Imię</td>
                         <td>Nazwisko</td>
                         <td>Klasa</td>

@@ -4,81 +4,25 @@ import axios from "axios";
 
 export default function MyGrades(_id) {
     let { id } = useParams()
-    const [more, setMore] = useState("")
+    const [more, setMore] = useState(false)
     const [status, setStatus] = useState({
         name: "",
         lastName: "",
-        actions: []
+        grades: []
     });
 
     function oneUser(id) {
         axios.get('http://127.0.0.1:8080/api/user/' + id)
             .then((res) => {
                 setStatus(res.data)
-                console.log(res.data);
+
             })
     };
-
-    function mores(id) {
-        setMore(id)
-    }
 
     useEffect(() => {
         oneUser(id)
     }, [])
-    console.log(status);
-    if (more === status.id) {
-        return (
-            <div>
-                <table className="myGreades">
-                    <thead>
-                        <tr>
-                            <th colSpan="4">Oceny:{status.name} {status.lastName}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="titlle-box" >
-                            <td>Przedmiot</td>
-                            <td>Typ</td>
-                            <td>Dział</td>
-                            <td>Ocena</td>
-                        </tr>
-                        {status.actions.map((actions) => {
-                            return (
-                                <>
-                                    <tr>
-                                        <td>
-                                            {actions?.nameSubject}
-                                        </td>
-                                        <td>
-                                            {actions?.genus}
-                                        </td>
-                                        <td>
-                                            {actions?.titlleTask}
-                                        </td>
-                                        <td>
-                                            {actions?.rating}
-                                        </td>
-                                    </tr>
 
-                                    <tr className="titlle-box" >
-                                        <td colSpan="4">Opis</td>
-                                    </tr>
-                                    <tr >{actions?.textarea}</tr>
-
-                                </>
-                            )
-                        })}
-                        <button className="btn" onClick={() => setMore("")}>Zamkinj</button>
-                    </tbody>
-
-                </table>
-            </div>
-
-
-
-        )
-    }
     return (
         <div>
             <table className="myGreades">
@@ -88,38 +32,38 @@ export default function MyGrades(_id) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className="titlle-box" >
+                    <tr className="title-box" >
                         <td>Przedmiot</td>
                         <td>Typ</td>
                         <td>Dział</td>
                         <td>Ocena</td>
                     </tr>
-                    {status.actions.map((actions) => {
+                    {status.grades.map((grades) => {
                         return (
                             <>
                                 <tr>
                                     <td>
-                                        {actions?.nameSubject}
+                                        {grades?.nameSubject}
                                     </td>
                                     <td>
-                                        {actions?.genus}
+                                        {grades?.genus}
                                     </td>
                                     <td>
-                                        {actions?.titlleTask}
+                                        {grades?.titleTask}
                                     </td>
                                     <td>
-                                        {actions?.rating}
+                                        {grades?.rating}
                                     </td>
                                 </tr>
-
-
+                                <tr>
+                                    {more && <td colSpan="4">{grades?.textarea}</td>}
+                                </tr>
                             </>
                         )
                     })}
-                    <button className="btn" onClick={() => mores(status.id)}>Wyswetl opisy ocen</button>
                 </tbody>
-
             </table>
+            <button className="btn" onClick={() => setMore(!more)}>{more ? "Ukryj opisy" : "Wyswetl opisy"}</button>
         </div>
     )
 }

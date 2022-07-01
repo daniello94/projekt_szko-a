@@ -30,7 +30,7 @@ export default function App() {
     const location = useLocation();
 
     if (!userData) {
-      return <Navigate to="/login" replace state={{ from: location }} />;
+      return <Navigate to="/" replace state={{ from: location }} />;
     }
     return children;
   };
@@ -58,7 +58,7 @@ export default function App() {
 
           {!userData && (
             <li>
-              <Link className="ul-itm" to="/login">
+              <Link className="ul-itm" to="/">
                 Logowanie
               </Link>
             </li>
@@ -79,7 +79,7 @@ export default function App() {
           )}
           {userData && (
             <li>
-              <Link className="ul-itm" onClick={logOut} to="/login">
+              <Link className="ul-itm" onClick={logOut} to="/">
                 Wyloguj
               </Link>
             </li>
@@ -89,7 +89,7 @@ export default function App() {
 
       <Routes>
         <Route
-          path="/login"
+          path="/"
           index
           element={<Login userData={userData} setUser={setUser} />}
         />
