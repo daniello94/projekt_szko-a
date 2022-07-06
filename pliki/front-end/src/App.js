@@ -15,6 +15,7 @@ import MyGrades from "./routes/MyGrades";
 import StudentAdd from "./routes/StudentAdd";
 import StudentData from "./routes/StudentData";
 import AddGrades from "./routes/AddGrades";
+import Chat from "./routes/Chat"
 import axios from "axios";
 
 export default function App() {
@@ -63,6 +64,7 @@ export default function App() {
               </Link>
             </li>
           )}
+          
           {userData && (
             <li>
               <Link className="ul-itm" to={`/userData/${userData.user._id}`}>
@@ -70,6 +72,7 @@ export default function App() {
               </Link>
             </li>
           )}
+
           {userData  && userData.user.role === "student"  &&  (
             <li>
               <Link className="ul-itm" to={`/myGrades/${userData.user._id}`}>
@@ -77,6 +80,15 @@ export default function App() {
               </Link>
             </li>
           )}
+
+             {userData && (
+            <li>
+              <Link className="ul-itm" to="/chat">
+                Czat
+              </Link>
+            </li>
+          )}
+
           {userData && (
             <li>
               <Link className="ul-itm" onClick={logOut} to="/">
@@ -107,6 +119,7 @@ export default function App() {
         <Route path="/studentAdd" element={<StudentAdd />} />
         <Route path="/studentData/:id" element={<StudentData />} />
         <Route path="/addGrades/:id" element={<AddGrades />} />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </div>
   );
