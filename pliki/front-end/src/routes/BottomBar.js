@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function BottomBar(props) {
+  console.log(props);
   const classes = useStyles();
 
   return (
@@ -49,18 +50,9 @@ export default function BottomBar(props) {
       <Toolbar>
         <div className={classes.inputContainer} style={{maxWidth: '200px'}}>
           <div className={classes.icon}>
-            <FaceIcon />
+            
           </div>
-          <InputBase
-            onChange={props.handleName}
-            value={props.name}
-            placeholder="Name"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'name' }}
-          />
+          <p  style={{marginLeft: '12px'}}>{props.name}-{props.classNr}</p>
         </div>
         <div className={classes.inputContainer}>
           <form onSubmit={props.handleSubmit}>

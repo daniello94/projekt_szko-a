@@ -38,7 +38,7 @@ function userLogin(data, cb) {
     })
 };
 
-function userList(group,cb) {
+function userList(group, cb) {
     let payload = {}
 
     if (group) {
@@ -99,7 +99,8 @@ function gradesAdd(data, cb) {
             }
         }
     )
-}
+};
+
 
 module.exports = {
     add: userAdd,

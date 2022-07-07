@@ -7,21 +7,25 @@ const path = require('path');
 const Message = require('./api/models/Message');
 const io = require('socket.io')(http, {
     cors: {
-        origin: " localhost:3000 ",
+        origin: " *",
         methods: ["GET", "POST"]
     }
 });
 app.use(express.static(path.join(__dirname, '..', 'user', 'build')));
+
 io.on('connection', (socket) => {
     Message.find().sort({ createAt: -1 }).limit(10).exec((err, messages) => {
         if (err) return console.error(err)
         socket.emit('init', messages)
     })
+
     socket.on('message', (msg) => {
         const message = new Message({
             content: msg.content,
-            name: msg.name
+            name: msg.name,
+            classNr:msg.classNr
         })
+
         message.save((err) => {
             if (err) return console.error(err);
             socket.broadcast.emit('push', msg)
@@ -30,6 +34,7 @@ io.on('connection', (socket) => {
 });
 
 const userApi = require("./api/userApi")
+const chatApi = require("./api/chatApi")
 const config = {
     origin: 'http://' + process.env.DB_HOST
 };
@@ -39,6 +44,7 @@ app.use(cors());
 
 
 app.use("/api/user", userApi)
+app.use("/api/chat",chatApi)
 
 
 app.get("/", cors(config), function (req, res) {
