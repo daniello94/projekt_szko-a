@@ -2,7 +2,7 @@ const Message = require('../models/Message')
 
 
 function chatMessage(cb){
-    Message.find().lean().exec(function(err, messages) {
+    Message.find().lean().sort({ updatedAt: -1 }).limit(10).exec(function(err, messages) {
         if(err) {
             cb(err)
         } else {
