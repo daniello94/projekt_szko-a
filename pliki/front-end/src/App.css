@@ -23,6 +23,6 @@ nav ul li .ul-itm {
 }
 
 nav ul li .ul-itm:hover {
-  background-color: black;
+  background-color: #008000;
   color: white;
 }

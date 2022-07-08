@@ -29,4 +29,11 @@ router.post('/add',function(req,res){
     })
 });
 
+router.put('/addResponse/:id', function (req, res) {
+    chat.response([req.params.id, req.body], function (err, messages) {
+        if (err) res.send(err)
+        res.json(messages)
+    })
+});
+
 module.exports=router

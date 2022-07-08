@@ -23,8 +23,24 @@ function messageAdd(data, cb) {
         }
 
     });
-}
+};
+
+function responseAdd(data, cb) {
+    console.log( { response: data[1] });
+    Message.updateOne(
+        { _id: data[0] },
+        { $push: { response: data[1] } },
+        function (err, messages) {
+            if (err) {
+                cb(err)
+            } else {
+                cb(null, messages)
+            }
+        }
+    )
+};
 module.exports={
     list:chatMessage,
     addMessages:messageAdd,
+    response:responseAdd
 }

@@ -7,16 +7,18 @@ table {
 
 
 tr, td, th {
+    
     border: 1px solid black;
     padding: 5px;
 }
 
+
 .box {
-    background-color: azure;
+    background-color: #F0fff0;;
 }
 
 thead, .title-box {
-    background-color: black;
+    background-color: #008000;
     color: white;
 }
 
@@ -26,11 +28,11 @@ thead, .title-box {
 
 .btn {
     padding: 4px;
-    background-color: azure;
+    background-color: #F0fff0;;
     color: black;
     margin-right: 5px;
     transition: .7s;
-    border: 1px solid azure;
+    border: 1px solid #F0fff0;
     font-family: cursive;
     font-weight: bold;
     text-decoration: none;
@@ -38,7 +40,7 @@ thead, .title-box {
 }
 
 .btn:hover {
-    background-color: black;
+    background-color: #008000;
     color: azure;
     border-radius: 5px;
 }
@@ -51,7 +53,7 @@ thead, .title-box {
 
     margin-left: 10%;
     padding: 10px;
-    background-color: black;
+    background-color:#008000;
     color: azure;
     border-radius: 5px;
 

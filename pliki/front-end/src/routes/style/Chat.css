@@ -3,13 +3,13 @@
     padding: 10px;
     margin-bottom: 10px;
     text-align: center;
-    background-color: azure;
+    background-color: #F0fff0;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
 .message-name{
-    background-color: black;
+    background-color: #008000;
     color: white;
     padding: 5px 100px;
     border: 1px solid black;
@@ -33,7 +33,7 @@ hr{
 }
 .btn-chat{
     padding: 10px;
-    background-color: black;
+    background-color: #008000;
     color: white;
     border: 1px solid black;
     border-radius: 12px;
@@ -41,11 +41,11 @@ hr{
    
 }
 .btn-chat:hover{
-    background-color: azure;
+    background-color: #F0fff0;
     color: black;
 }
 .input-chat:focus{
-    background-color: azure;
+    background-color: #F0fff0;
     transition: 0.6s;
 
 }
