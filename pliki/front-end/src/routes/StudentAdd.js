@@ -26,13 +26,13 @@ const validateClassNr = form => {
 
 const validateNumberId = form => {
     if (!form.numberId) {
-        return "wpisz numberId"
+        return "wpisz Pesel"
     } else if (form.numberId.length <= 10) {
-        return "Podałeś za mało cyfr numberId składa się z 11 liczb"
+        return "Podałeś za mało cyfr Pesel składa się z 11 liczb"
     } else if (form.numberId.length >= 12) {
-        return "Podałes za dużo cyf numberId składa się z 11 liczb"
+        return "Podałes za dużo cyf Pesel składa się z 11 liczb"
     } else if (/\D/.test(form.numberId)) {
-        return "Podałeś błędny znak numer numberId składa sie z samych cyfr"
+        return "Podałeś błędny znak numer Pesel składa sie z samych cyfr"
     }
 };
 

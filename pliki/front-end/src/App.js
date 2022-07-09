@@ -15,7 +15,7 @@ import MyGrades from "./routes/MyGrades";
 import StudentAdd from "./routes/StudentAdd";
 import StudentData from "./routes/StudentData";
 import AddGrades from "./routes/AddGrades";
-import Chat from "./routes/Chat"
+import Blog from "./routes/Blog"
 import axios from "axios";
 import { PromiseProvider } from "mongoose";
 
@@ -84,8 +84,8 @@ export default function App() {
 
              {userData && (
             <li>
-              <Link className="ul-itm" to="/chat">
-                Czat
+              <Link className="ul-itm" to="/blog">
+                Blog
               </Link>
             </li>
           )}
@@ -120,7 +120,7 @@ export default function App() {
         <Route path="/studentAdd" element={<StudentAdd />} />
         <Route path="/studentData/:id" element={<StudentData />} />
         <Route path="/addGrades/:id" element={<AddGrades />} />
-        <Route path="/chat" element={<Chat dataUser={userData} />} />
+        <Route path="/blog" element={<Blog dataUser={userData} />} />
       </Routes>
     </div>
   );
