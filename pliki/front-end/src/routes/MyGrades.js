@@ -41,7 +41,7 @@ export default function MyGrades(_id) {
                     {status.grades.map((grades) => {
                         return (
                             <>
-                                <tr>
+                                <tr className="box">
                                     <td>
                                         {grades?.nameSubject}
                                     </td>
@@ -55,7 +55,7 @@ export default function MyGrades(_id) {
                                         {grades?.rating}
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr className="box">
                                     {more && <td colSpan="4">{grades?.textarea}</td>}
                                 </tr>
                             </>
