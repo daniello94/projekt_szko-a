@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-
+import './style/List.css'
 export default function StudentData() {
     const [status, setStatus] = useState({
         name: "",
@@ -78,47 +78,47 @@ export default function StudentData() {
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Pesel</td>
-                            <td><input type="text" value={numberId} onChange={(e) => setNumberId(e.target.value)} name="numberId"></input></td>
+                    <tbody >
+                        <tr className="box">
+                            <td >Pesel</td>
+                            <td ><input type="text" value={numberId} onChange={(e) => setNumberId(e.target.value)} name="numberId"></input></td>
                         </tr>
-                        <tr>
-                            <td>Imie Matki</td>
+                        <tr className="box">
+                            <td >Imie Matki</td>
                             <td><input type="text" value={nameMather} onChange={(e) => setNameMather(e.target.value)} name="nameMather"></input></td>
                         </tr>
-                        <tr>
+                        <tr className="box">
                             <td>Imie Ojca</td>
                             <td><input type="text" value={nameFather} onChange={(e) => setNameFather(e.target.value)} name="nameFather"></input></td>
                         </tr>
-                        <tr>
+                        <tr className="box">
                             <td>Email</td>
                             <td><input type="text" value={email} onChange={(e) => setEmail(e.target.value)} name="email"></input></td>
                         </tr>
-                        <tr>
+                        <tr className="box">
                             <td>Klasa</td>
                             <td><input type="text" value={classNr} onChange={(e) => setClassNr(e.target.value)} name="classNr"></input></td>
                         </tr>
-                        <tr>
+                        <tr className="box">
                             <td>Typ konta</td>
                             <td>{status.role}</td>
                         </tr>
-                        <tr>
+                        <tr className="box">
                             <th className="title-box" colSpan="4">address</th>
                         </tr>
 
-                        <tr>
+                        <tr className="box">
                             <td>Miasto</td>
                             <td><input type="text" value={city} onChange={(e) => setCity(e.target.value)} name="city"></input></td>
                         </tr>
-                        <tr>
+                        <tr className="box">
                             <td>Ulica i Numer</td>
                             <td>
                                 <input type="text" value={street} onChange={(e) => setStreet(e.target.value)} name="street"></input>
                                 <input type="text" value={nr} onChange={(e) => setNr(e.target.value)} name="nr"></input>
                             </td>
                         </tr>
-                        <tr>
+                        <tr className="box">
                             <td>Kod Pocztowy</td>
                             <td>
                                 <input type="text" value={zipCode} onChange={(e) => setZipCode(e.target.value)} name="zipCode"></input>
@@ -144,42 +144,42 @@ export default function StudentData() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             Klasa
                         </td>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             {status.classNr}
                         </td>
                     </tr>
                     <tr>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             Pesel
                         </td>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             {status.numberId}
                         </td>
                     </tr>
                     <tr>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             Imie Matki
                         </td>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             {status.nameMather}
                         </td>
                     </tr>
                     <tr>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             Imie Ojca
                         </td>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             {status.nameFather}
                         </td>
                     </tr>
                     <tr>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             Email
                         </td>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             {status.email}
                         </td>
                     </tr>
@@ -189,23 +189,23 @@ export default function StudentData() {
                         </th>
                     </tr>
                     <tr>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             Miasto
                         </td>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             {status.address.city}
                         </td>
                     </tr>
                     <tr>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             Ulica i Numer
                         </td>
-                        <td colSpan="2">
+                        <td className="box" colSpan="2">
                             {status.address.street} {status.address.nr}
                         </td>
                     </tr>
-                    <tr>
-                        <td colSpan="2">
+                    <tr className="box">
+                        <td  colSpan="2">
                             Kod Pocztowy
                         </td>
                         <td colSpan="2">
@@ -227,7 +227,7 @@ export default function StudentData() {
                     {status.grades.map((grades) => {
                         return (
                             <>
-                                <tr>
+                                <tr className="box">
                                     <td>
                                         {grades?.nameSubject}
                                     </td>

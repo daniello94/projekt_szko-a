@@ -45,44 +45,44 @@ export default function UserData(_id) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Pesel</td>
-                        <td>{status.numberId}</td>
+                        <td className="box">Pesel</td>
+                        <td className="box">{status.numberId}</td>
                     </tr>
                     <tr>
-                        <td>Imie Matki</td>
-                        <td>{status.nameMather}</td>
+                        <td className="box">Imie Matki</td>
+                        <td className="box">{status.nameMather}</td>
                     </tr>
                     <tr>
-                        <td>Imie Ojca</td>
-                        <td>{status.nameFather}</td>
+                        <td className="box">Imie Ojca</td>
+                        <td className="box">{status.nameFather}</td>
                     </tr>
                     <tr>
-                        <td>Email</td>
-                        <td>{status.email}</td>
+                        <td className="box">Email</td>
+                        <td className="box">{status.email}</td>
                     </tr>
                     <tr>
-                        <td>Klasa</td>
-                        <td>{status.classNr}</td>
+                        <td className="box">Klasa</td>
+                        <td className="box">{status.classNr}</td>
                     </tr>
                     <tr>
-                        <td>Typ konta</td>
-                        <td>{status.role}</td>
+                        <td className="box">Typ konta</td>
+                        <td className="box">{status.role}</td>
                     </tr>
                     <tr>
                         <th className="title-box" colSpan="2">Adres</th>
                     </tr>
 
                     <tr>
-                        <td>Miasto</td>
-                        <td>{status.address.city}</td>
+                        <td className="box">Miasto</td>
+                        <td className="box">{status.address.city}</td>
                     </tr>
                     <tr>
-                        <td>Ulica i Numer</td>
-                        <td>{status.address.street} {status.address.nr}</td>
+                        <td className="box">Ulica i Numer</td>
+                        <td className="box">{status.address.street} {status.address.nr}</td>
                     </tr>
                     <tr>
-                        <td>Kod Pocztowy</td>
-                        <td>{status.address.zipCode}</td>
+                        <td className="box">Kod Pocztowy</td>
+                        <td className="box">{status.address.zipCode}</td>
                     </tr>
                 </tbody>
             </table>

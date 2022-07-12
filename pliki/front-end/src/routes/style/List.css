@@ -3,6 +3,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
+    opacity: 0.9;
 }
 
 
@@ -14,7 +15,8 @@ tr, td, th {
 
 
 .box {
-    background-color: #F0fff0;;
+    background-color: #e0ece0;
+    opacity: 0.9;
 }
 
 thead, .title-box {
@@ -36,6 +38,7 @@ thead, .title-box {
     font-family: cursive;
     font-weight: bold;
     text-decoration: none;
+    opacity: 0.9;
 
 }
 
@@ -43,10 +46,13 @@ thead, .title-box {
     background-color: #008000;
     color: azure;
     border-radius: 5px;
+    opacity: 0.9;
+
 }
 
 .btn-2 {
     font-size: 20px;
+    opacity: 0.9;
 }
 
 .select-class {
@@ -56,5 +62,6 @@ thead, .title-box {
     background-color:#008000;
     color: azure;
     border-radius: 5px;
+    opacity: 0.9;
 
 }

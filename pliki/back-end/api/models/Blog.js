@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment'); // require
 mongoose.connect('mongodb://' + process.env.DB_HOST + '/' + process.env.DB_NAME, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const responseSchema = new mongoose.Schema({
@@ -10,7 +11,7 @@ const responseSchema = new mongoose.Schema({
     timestamps: true,
     
 });
-const messageSchema = new mongoose.Schema({
+const blockSchema = new mongoose.Schema({
     title:String,
     content: String,
     name: String,
@@ -20,4 +21,4 @@ const messageSchema = new mongoose.Schema({
     timestamps: true,
     
 });
-module.exports = mongoose.model("Blog", messageSchema);
+module.exports = mongoose.model("Blog", blockSchema);

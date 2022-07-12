@@ -1,11 +1,11 @@
 const Blog = require('../models/Blog')
 
 function chatBlog(cb){
-    Blog.find().lean().sort({ updatedAt: -1 }).exec(function(err, messages) {
+    Blog.find().lean().sort({ updatedAt: -1 }).limit(15).exec(function(err, blogs) {
         if(err) {
             cb(err)
         } else {
-            cb(null, messages)
+            cb(null, blogs)
         }
     });
 };
@@ -13,22 +13,22 @@ function chatBlog(cb){
 function messageAdd(data, cb) {
     let newBlog = new Blog(data);
 
-    newBlog.save(function(err, message) {
+    newBlog.save(function(err, blog) {
 
         if(err) {
             cb(err);
         } else {
-            cb(null, message);
+            cb(null, blog);
         }
 
     });
 };
 function chatGet(id, cb) {
-    Blog.findById(id).exec(function (err, message) {
+    Blog.findById(id).exec(function (err, blog) {
         if (err) {
             cb(err)
         } else {
-            cb(null, message)
+            cb(null, blog)
         }
     })
 };
@@ -38,11 +38,11 @@ function responseAdd(data, cb) {
     Blog.updateOne(
         { _id: data[0] },
         { $push: { responses: data[1] } },
-        function (err, messages) {
+        function (err, blogs) {
             if (err) {
                 cb(err)
             } else {
-                cb(null, messages)
+                cb(null, blogs)
             }
         }
     )

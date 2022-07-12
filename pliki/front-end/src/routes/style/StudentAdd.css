@@ -4,6 +4,7 @@ form{
     display: flex;
     flex-direction: column;
     width: 50%;
+    opacity: 0.9;
 
 }
 form label{

@@ -9,12 +9,21 @@ const config = {
     origin: 'http://' + process.env.DB_HOST
 };
 
+const io = require("socket.io")(http, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+    },
+});
+
+const socketMessages = require("./sockets/messages")
+socketMessages(io)
 app.use(express.json());
 app.use(cors());
 
 
 app.use("/api/user", userApi)
-app.use("/api/chat",chatApi)
+app.use("/api/chat", chatApi)
 
 
 app.get("/", cors(config), function (req, res) {

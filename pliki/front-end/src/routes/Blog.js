@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import './style/Chat.css';
-
+import './style/Blog.css';
+import moment from "moment";
 const validate = form => {
     if (!form.content) {
         return "Musisz wpisać tekst"
@@ -130,7 +130,7 @@ export default function Chat(props) {
                 <div className='style-messages'>
                     <span className='message-name' key={onePost._id}>{onePost.title}</span><br />
                     <span className='author-title'>{onePost.name} {onePost.classNr}</span>
-                    <span className='datum-blog'>{onePost.createdAt}</span>
+                    <span className='datum-blog'>{moment(onePost.createdAt).format('DD/MM/YYYY - hh:mm:ss')}</span>
                     <hr />
                     <span className='message-content'>{onePost.content}</span>
                 </div>
@@ -140,7 +140,7 @@ export default function Chat(props) {
                             <div className='style-messages'>
                                 <span key={responses._id} className='author-title'>{responses.name} {responses.classNr}</span> <br />
                                 <span className='message-content'>{responses.content}</span>
-                                <span className='datum-blog'>{responses.createdAt}</span>
+                                <span className='datum-blog'>{moment(responses.createdAt).format('DD/MM/YYYY - hh:mm:ss')}</span>
                             </div>
                         )
                     })}
@@ -170,7 +170,7 @@ export default function Chat(props) {
                             <span className='author-title'>{message.name} {message.classNr}</span>
                             <hr />
                             <span className='message-content'>{message.content}</span>
-                            <span className='datum-blog'>{message.createdAt}</span>
+                            <span className='datum-blog'>{moment(message.createdAt).format('DD/MM/YYYY - hh:mm:ss')}</span>
                             <button className='btn pos' onClick={() => oneMessages(message._id)}>Zobacz odpowiedzi</button>
                         </div>
                     )
