@@ -154,7 +154,7 @@ export default function Chat(props) {
                             e.preventDefault();
                             sendResponse(onePost._id)
                         }}>Odpowiedz</button>
-                        <button className='btn' onClick={() => sendResponse("")}>wstecz</button>
+                        <button className='btn' onClick={() => setForm("")}>wstecz</button>
                     </form>
                 </div>
             </div>

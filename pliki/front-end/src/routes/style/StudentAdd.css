@@ -45,3 +45,7 @@ form input,select{
     border: 1px solid red;
     background-color: rgba(224, 163, 163, 0.888)
 }
+.student-add-content{
+    text-align: center;
+   
+}

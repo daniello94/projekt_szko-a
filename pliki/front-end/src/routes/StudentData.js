@@ -68,7 +68,7 @@ export default function StudentData() {
     }, []);
     if (update === status.id) {
         return (
-            <div>
+            <div >
                 <table>
                     <thead>
                         <tr>
@@ -126,8 +126,10 @@ export default function StudentData() {
                         </tr>
                     </tbody>
                 </table>
-                <button className="btn btn-2" onClick={() => updateUser(status._id)}>Zapisz</button>
-                <button className="btn btn-2" onClick={() => setUpdate("")}>Anuluj</button>
+                <div className="student-add-content">
+                    <button className="btn btn-2" onClick={() => updateUser(status._id)}>Zapisz</button>
+                    <button className="btn btn-2" onClick={() => setUpdate("")}>Anuluj</button>
+                </div>
             </div>
         )
     };
@@ -205,7 +207,7 @@ export default function StudentData() {
                         </td>
                     </tr>
                     <tr className="box">
-                        <td  colSpan="2">
+                        <td colSpan="2">
                             Kod Pocztowy
                         </td>
                         <td colSpan="2">
@@ -217,7 +219,7 @@ export default function StudentData() {
                             Oceny
                         </th>
                     </tr>
-                    <tr  className="title-box">
+                    <tr className="title-box">
                         <td>Przedmiot</td>
                         <td>Rodzaj</td>
                         <td>Nazwa działu</td>
