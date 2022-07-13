@@ -1,3 +1,4 @@
+
 table {
     width: 80%;
     margin-left: auto;
@@ -64,4 +65,9 @@ thead, .title-box {
     border-radius: 5px;
     opacity: 0.9;
 
+}
+.icon-login{
+    font-size: 70px;
+    margin-bottom: 40px;
+    color:  #008000;
 }

@@ -1,6 +1,9 @@
-import React, { useState, useEffect, useNavigate } from "react";
+import React, { useState} from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSchool} from "@fortawesome/free-solid-svg-icons"
+
 const validateLogin = (form) => {
   if (!form.email) {
     return "wpisz login";
@@ -68,11 +71,12 @@ export default function Login(props) {
 
   return (
     <div>
+
       {props.userData && <Navigate to={`/userData/${props.userData.user._id}`} />}
       <p className="error">{error}</p>
 
       <form onSubmit={userSubmit}>
-        
+      <FontAwesomeIcon className="icon-login" icon={faSchool } />
         <input
           type="text"
           value={email}

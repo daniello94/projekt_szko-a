@@ -4,7 +4,6 @@ import {
   Link,
   Navigate,
   useLocation,
-  useNavigate,
 } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "./App.css";
@@ -56,14 +55,6 @@ export default function App() {
             <li>
               <Link className="ul-itm" to="/studentList">
                 Lista Studentów
-              </Link>
-            </li>
-          )}
-
-          {!userData && (
-            <li>
-              <Link className="ul-itm" to="/">
-                Logowanie
               </Link>
             </li>
           )}
@@ -125,6 +116,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        
         <Route path="userData/:id" element={<UserData />} />
         <Route path="/myGrades/:id" element={<MyGrades />} />
         <Route path="/studentAdd" element={<StudentAdd />} />
@@ -133,6 +125,7 @@ export default function App() {
         <Route path="/blog" element={<Blog dataUser={userData} />} />
         <Route path="/chat" element={<Chat dataUser={userData} />} />
       </Routes>
+     
     </div>
   );
 }
