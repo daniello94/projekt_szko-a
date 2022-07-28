@@ -20,8 +20,7 @@ export default function StudentData() {
             nr: "",
             zipCode: ""
         },
-        grades: []
-
+        results: [],
     });
 
     const [name, setName] = useState("");
@@ -219,34 +218,43 @@ export default function StudentData() {
                             Oceny
                         </th>
                     </tr>
-                    <tr className="title-box">
-                        <td>Przedmiot</td>
-                        <td>Rodzaj</td>
-                        <td>Nazwa działu</td>
-                        <td>Stopień</td>
+                    <tr className="box" colSpan="4">
+                        <td colSpan="3">
+                            {status.results.map((results) => {
+                                return (
+                                    <>
+                                        <tr className="box one">
+                                            <th className="title-box one" colSpan="2">
+                                                {results?.nameSubject}
+                                            </th>
+                                        </tr>
+                                        <tr className="title-box ">
+                                            <td>Nazwa Działu</td>
+                                            <td>Rodzaj</td>
+                                            <td>Stopień</td>
+                                        </tr>
+                                        {results.grades.map((grades) => {
+                                            return (
+                                                <>
+                                                    <tr key={grades._id} className="box ">
+                                                        <td  >
+                                                            {grades?.titleTask}
+                                                        </td>
+                                                        <td>
+                                                            {grades?.genus}
+                                                        </td>
+                                                        <td>
+                                                            {grades?.rating}
+                                                        </td>
+                                                    </tr>
+                                                </>
+                                            )
+                                        })}
+                                    </>
+                                )
+                            })}
+                        </td>
                     </tr>
-
-                    {status.grades.map((grades) => {
-                        return (
-                            <>
-                                <tr className="box">
-                                    <td>
-                                        {grades?.nameSubject}
-                                    </td>
-                                    <td>
-                                        {grades?.genus}
-                                    </td>
-                                    <td>
-                                        {grades?.titleTask}
-                                    </td>
-                                    <td>
-                                        {grades?.rating}
-                                    </td>
-                                </tr>
-
-                            </>
-                        )
-                    })}
 
                 </tbody>
             </table>

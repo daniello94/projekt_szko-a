@@ -7,7 +7,7 @@ class StudentList extends Component {
         super(props)
         this.state = {
             dataStudent: [],
-            group:''
+            group: ''
         }
     };
     componentDidMount = () => {
@@ -18,23 +18,33 @@ class StudentList extends Component {
             .then(res => {
                 this.setState({
                     dataStudent: res.data
-                    
+
                 })
             })
     };
     render() {
         return (
             <div className="div-list">
-                  <select className="select-class" onChange={(e)=>{
-                    this.setState({group: e.target.value}, ()=>{
+                <select className="select-class" onChange={(e) => {
+                    this.setState({ group: e.target.value }, () => {
                         this.listStudents();
                     })
                 }}>
                     <option value="">Wszyscy </option>
-                    <option value="2a">Klasa 2a</option>
-                    <option value="3a">Klasa 3a</option>
+                    <option value="1a">1a</option>
+                    <option value="1b">1b</option>
+                    <option value="1c">1c</option>
+                    <option value="2a">2a</option>
+                    <option value="2b">2b</option>
+                    <option value="2c">2c</option>
+                    <option value="3a">3a</option>
+                    <option value="3b">3b</option>
+                    <option value="3c">3c</option>
+                    <option value="4a">4a</option>
+                    <option value="4b">4b</option>
+                    <option value="4c">4c</option>
                 </select>
-               <List dataStudents={this.state.dataStudent} dataStudent={this.listStudents}/>
+                <List dataStudents={this.state.dataStudent} dataStudent={this.listStudents} />
             </div>
         )
     }

@@ -182,9 +182,24 @@ export default function StudentAdd() {
                 <input onChange={stateStudent} value={lastName} type="text" name="lastName" placeholder="Podaj nazwisko ucznia" />
                 <span className="error">{errorLastName}</span>
 
-                <input onChange={stateStudent} value={classNr} type="text" name="classNr" placeholder="Podaj klase ucznia" />
+                <label>Podaj klase ucznia
+                    <select onChange={stateStudent} value={classNr} type="text" name="classNr">
+                        <option>wybierz</option>
+                        <option>1a</option>
+                        <option>1b</option>
+                        <option>1c</option>
+                        <option>2a</option>
+                        <option>2b</option>
+                        <option>2c</option>
+                        <option>3a</option>
+                        <option>3b</option>
+                        <option>3c</option>
+                        <option>4a</option>
+                        <option>4b</option>
+                        <option>4c</option>
+                    </select>
+                </label>
                 <span className="error">{errorClassNr}</span>
-
                 <input onChange={stateStudent} value={numberId} type="text" name="numberId" placeholder="Podaj Pesel ucznia" />
                 <span className="error">{errorNumberId}</span>
 

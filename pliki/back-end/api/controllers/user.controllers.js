@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-
+const Subject = require("../models/Subject")
 function userAdd(data, cb) {
     let newUser = new User(data);
 
@@ -9,8 +9,6 @@ function userAdd(data, cb) {
             cb(err)
         } else {
             cb(null, user);
-
-
         }
     })
 };
@@ -88,20 +86,42 @@ function userDelate(id, cb) {
 };
 
 function gradesAdd(data, cb) {
-    User.updateOne(
-        { _id: data[0] },
-        { $push: { grades: data[1] } },
-        function (err, grades) {
-            if (err) {
-                cb(err)
-            } else {
-                cb(null, grades)
-            }
+    User.findOne({ _id: data[0] }, function (err, foundUsers) {
+        if (
+            !foundUsers.results.filter(
+                (result) => result.nameSubject === data[1].nameSubject
+            ).length
+        ) {
+            let newSub = new Subject({
+                nameSubject: data[1].nameSubject,
+                grades: [data[1].grades],
+            });
+
+            foundUsers.results.push(newSub);
+            foundUsers.save(function (err, data) {
+                if (err) {
+                    cb(err)
+                } else {
+                    cb(null, data)
+                }
+            });
+        } else {
+            const index = foundUsers.results.findIndex((result) => {
+                return result.nameSubject === data[1].nameSubject;
+            });
+
+            foundUsers.results[index].grades.push(data[1].grades);
+
+            foundUsers.save(function (err, data) {
+                if (err) {
+                    cb(err)
+                } else {
+                    cb(null, data)
+                }
+            });
         }
-    )
-};
-
-
+    });
+}
 module.exports = {
     add: userAdd,
     login: userLogin,
@@ -109,5 +129,5 @@ module.exports = {
     get: userGet,
     update: userUpdate,
     delete: userDelate,
-    grades: gradesAdd
-};
+    grades: gradesAdd,
+}

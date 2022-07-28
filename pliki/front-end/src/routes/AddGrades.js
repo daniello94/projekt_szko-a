@@ -34,7 +34,7 @@ export default function AddGrades() {
         textarea: "",
         genus: ""
     });
- 
+    
     function gradesAdd(_id) {
         const errors = validate(status)
         if (errors) {
@@ -42,7 +42,12 @@ export default function AddGrades() {
 
         } else {
             axios.put('http://127.0.0.1:8080/api/user/addGrade/' + id, {
-                nameSubject, rating, titleTask, textarea, genus
+                nameSubject,
+                grades: {
+                    rating, titleTask, textarea, genus
+                }
+
+
             }).then(() => {
                 setError(<span>Wystawiłeś ocene</span>)
             })
@@ -57,7 +62,6 @@ export default function AddGrades() {
 
     }
 
-
     let stateStudent = (e) => {
         setStatus({
             ...status,
@@ -65,7 +69,8 @@ export default function AddGrades() {
         })
 
     }
-    const { nameSubject, rating, titleTask, textarea, genus } = status
+    const { nameSubject, rating, titleTask, textarea, genus
+    } = status
     return (
         <div className="form">
             <span className="error">{error}</span>
