@@ -49,7 +49,7 @@ export default function Chat(props) {
             <div className="form-content">
                         <span className="web-user">{props.dataUser.user.name} {props.dataUser.user.classNr}</span><br />
                         <form className="form-chat" onSubmit={handleSubmit}>
-                            <textarea className="chat-textarea" placeholder="Napisz swoją wiadomoś"
+                            <textarea className="chat-textarea" placeholder="Napisz swoją wiadomość"
                                 onChange={(e) => setFormData(e.target.value)}
                                 value={formData}>
                             </textarea>

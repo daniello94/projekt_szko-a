@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const blog= require('./controllers/blog.controllres');
 
-
 router.get('/all',function(req,res){
     blog.list(function(err,blogs){
         if(err){

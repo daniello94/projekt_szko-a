@@ -235,7 +235,6 @@ export default function StudentAdd() {
                 <span className="error">{errorRole}</span>
 
                 <button className="btn-1" onClick={addStudent} type="submit">Dodaj</button>
-
             </form>
         </div>
     )

@@ -15,7 +15,6 @@ export default function MyGrades(_id) {
         axios.get('http://127.0.0.1:8080/api/user/' + id)
             .then((res) => {
                 setStatus(res.data)
-
             })
     };
 
@@ -75,7 +74,6 @@ export default function MyGrades(_id) {
                             })}
                         </td>
                     </tr>
-
                 </tbody>
             </table>
             <button className="btn" onClick={() => setMore(!more)}>{more ? "Ukryj opisy" : "Wyswetl opisy"}</button>

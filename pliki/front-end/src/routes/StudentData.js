@@ -1,3 +1,4 @@
+import { GradeTwoTone } from "@material-ui/icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
@@ -220,12 +221,18 @@ export default function StudentData() {
                     </tr>
                     <tr className="box" colSpan="4">
                         <td colSpan="3">
-                            {status.results.map((results) => {
+                            {status.results.map((result) => {
+                            let gradeSum = 0
+                            result.grades.forEach(grade => {
+                                gradeSum+= parseFloat(grade.rating)
+                                console.log(grade);
+                            });
                                 return (
                                     <>
                                         <tr className="box one">
-                                            <th className="title-box one" colSpan="2">
-                                                {results?.nameSubject}
+                                            <th className="title-box one two" colSpan="2">
+                                                {result?.nameSubject} 
+                                               <span className="average">Średnia: {(gradeSum/result.grades.length).toFixed(2)}</span> 
                                             </th>
                                         </tr>
                                         <tr className="title-box ">
@@ -233,18 +240,19 @@ export default function StudentData() {
                                             <td>Rodzaj</td>
                                             <td>Stopień</td>
                                         </tr>
-                                        {results.grades.map((grades) => {
+                                        {result.grades.map((grade) => {
+                                            
                                             return (
                                                 <>
-                                                    <tr key={grades._id} className="box ">
+                                                    <tr key={grade._id} className="box ">
                                                         <td  >
-                                                            {grades?.titleTask}
+                                                            {grade?.titleTask}
                                                         </td>
                                                         <td>
-                                                            {grades?.genus}
+                                                            {grade?.genus}
                                                         </td>
                                                         <td>
-                                                            {grades?.rating}
+                                                            {grade?.rating}
                                                         </td>
                                                     </tr>
                                                 </>
@@ -253,6 +261,7 @@ export default function StudentData() {
                                     </>
                                 )
                             })}
+                            
                         </td>
                     </tr>
 

@@ -49,3 +49,10 @@ form input,select{
     text-align: center;
    
 }
+.average{
+    position: absolute;
+   right: 3px;
+}
+.two{
+    position: relative;
+}
