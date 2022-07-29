@@ -25,6 +25,7 @@ const fileFilter = (req, file, cb) => {
     }
 }
 let upload = multer({ storage, fileFilter })
+
 router.post('/signup', authTeacher,upload.single('photo'), function (req, res) {
     user.add(req.body, function (err, user) {
         if (err) {

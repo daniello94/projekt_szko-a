@@ -184,9 +184,6 @@ console.log(form);
             <h2>Dodaj Ucznia </h2>
             <p className="error">{error}</p>
             <form encType="multipart/form-data">  
-            <div className='bg'>
-
-            </div>
 
                 <input type="file" accept=".png, .jpg, .jpeg" name="photo" onChange={handlePhoto}>
                 </input>
