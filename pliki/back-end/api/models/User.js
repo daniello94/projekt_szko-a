@@ -21,6 +21,10 @@ const schema = mongoose.Schema({
         default: 'student',
         enum: ['student', 'teacher', 'director']
     },
+    photo:{
+        type:String,
+        default:''
+    },
     name: {
         type: String,
         require: true,

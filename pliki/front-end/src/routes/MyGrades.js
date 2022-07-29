@@ -10,7 +10,7 @@ export default function MyGrades(_id) {
         lastName: "",
         results: [],
     });
-    
+
     function oneUser(id) {
         axios.get('http://127.0.0.1:8080/api/user/' + id)
             .then((res) => {

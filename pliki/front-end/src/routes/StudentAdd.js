@@ -96,6 +96,7 @@ export default function StudentAdd() {
         password: "",
         passwordRep: "",
         role: "",
+        photo: "",
         address: {
             city: "",
             street: "",
@@ -103,7 +104,8 @@ export default function StudentAdd() {
             zipCode: ""
         }
     });
-
+   
+console.log(form);
     const addStudent = (e) => {
         e.preventDefault();
         const errorss = validate(form)
@@ -128,9 +130,9 @@ export default function StudentAdd() {
             return
         } else {
             const { name, lastName, numberId, classNr, nameMather, nameFather, role, email, password, passwordRep,
-                city, street, nr, zipCode } = form
+                city, street, nr, zipCode,photo } = form
             axios.post('http://127.0.0.1:8080/api/user/signup', {
-                name, lastName, numberId, classNr, nameMather, nameFather, role, email, password, passwordRep,
+                name, lastName, numberId, classNr, nameMather, nameFather, role, email, password, passwordRep,photo,
                 address: {
                     city,
                     street,
@@ -156,24 +158,38 @@ export default function StudentAdd() {
                 city: "",
                 street: "",
                 nr: "",
-                zipCode: ""
+                zipCode: "",
+                photo:""
             })
         }
+    }
+    const handlePhoto =(e)=>{
+        setForm({
+            ...form,
+          photo:e.target.files[0]
+        })
+        console.log(form.photo);
     }
     let stateStudent = (e) => {
         setForm({
             ...form,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         })
 
     }
-    const { name, lastName, numberId, nameMather, nameFather, email, classNr, role, password, passwordRep, city, street, nr, zipCode } = form
+    const { name, lastName,photo, numberId, nameMather, nameFather, email, classNr, role, password, passwordRep, city, street, nr, zipCode } = form
 
     return (
         <div className="form">
             <h2>Dodaj Ucznia </h2>
             <p className="error">{error}</p>
-            <form >
+            <form encType="multipart/form-data">  
+            <div className='bg'>
+
+            </div>
+
+                <input type="file" accept=".png, .jpg, .jpeg" name="photo" onChange={handlePhoto}>
+                </input>
 
                 <input onChange={stateStudent} value={name} type="text" name="name" placeholder="Podaj imie ucznia" />
                 <span className="error">

@@ -1,11 +1,31 @@
 const express = require("express");
 
 const router = express.Router();
-
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid')
+const path = require('path')
 const user = require('../api/controllers/user.controllers');
 const authTeacher = require("../api/midleweres/authTeacher");
 
-router.post('/signup', authTeacher, function (req, res) {
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'images')
+    },
+    filename: function (req, file, cb) {
+        cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname))
+    }
+})
+
+const fileFilter = (req, file, cb) => {
+    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (allowedFileTypes.includes(file.mimetype)) {
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+}
+let upload = multer({ storage, fileFilter })
+router.post('/signup', authTeacher,upload.single('photo'), function (req, res) {
     user.add(req.body, function (err, user) {
         if (err) {
             res.status(404);
@@ -16,6 +36,7 @@ router.post('/signup', authTeacher, function (req, res) {
             res.json(user)
         }
     })
+
 });
 
 router.post('/login', function (req, res) {
@@ -36,7 +57,7 @@ router.post('/login', function (req, res) {
 router.post('/all/', function (req, res) {
     let group = req.query.group
 
-    user.list(group,function (err, users) {
+    user.list(group, function (err, users) {
         if (err) {
             res.status(404);
             res.json({
